@@ -9,10 +9,10 @@ features:
 dataSources:
   - source:
       abi: PoolManager
-      address: "0x248083fb965359d82b06c1f5322480dcfc1ad857"
-      startBlock: 28974969
+      address: "0x05E73354cFDd6745C338b50BcFDfA3Aa6fA03408"
+      startBlock: 19088197
     name: PoolManager
-    network: linea
+    network: base-sepolia
     kind: ethereum/contract
     mapping:
       kind: ethereum/events
@@ -43,10 +43,10 @@ dataSources:
           handler: handleSwap
   - source:
       abi: PositionManager
-      address: "0xddcad5775b2816a87495f207731b3571d7ee3c76"
-      startBlock: 28974972
+      address: "0x4b2c77d209d3405f41a037ec6c77f7f5b8e2ca80"
+      startBlock: 20214494
     name: PositionManager
-    network: linea
+    network: base-sepolia
     kind: ethereum/contract
     mapping:
       kind: ethereum/events

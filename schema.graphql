@@ -165,7 +165,7 @@ type Tick @entity(immutable: false) {
   createdAtBlockNumber: BigInt!
 }
 
-type Transaction @entity(immutable: true) {
+type Transaction @entity(immutable: false) {
   # txn hash
   id: ID!
   # block txn was included in
@@ -183,7 +183,7 @@ type Transaction @entity(immutable: true) {
   unsubscriptions: [Unsubscribe]! @derivedFrom(field: "transaction")
 }
 
-type Swap @entity(immutable: true) {
+type Swap @entity(immutable: false) {
   # transaction hash + "#" + index in swaps Transaction array
   id: ID!
   # pointer to transaction
@@ -216,7 +216,7 @@ type Swap @entity(immutable: true) {
   logIndex: BigInt
 }
 
-type ModifyLiquidity @entity(immutable: true) {
+type ModifyLiquidity @entity(immutable: false) {
   # transaction hash + "#" + index in mints Transaction array
   id: ID!
   # which txn the ModifyLiquidity was included in
@@ -432,7 +432,7 @@ type Position @entity(immutable: false) {
   transfers: [Transfer!]! @derivedFrom(field: "position")
 }
 
-type Subscribe @entity(immutable: true) {
+type Subscribe @entity(immutable: false) {
   # transaction hash + '-' + log index
   id: ID!
   # token id of position subscribed to
@@ -451,7 +451,7 @@ type Subscribe @entity(immutable: true) {
   position: Position!
 }
 
-type Unsubscribe @entity(immutable: true) {
+type Unsubscribe @entity(immutable: false) {
   # transaction hash + '-' + log index
   id: ID!
   # token id of position unsubscribed from
@@ -470,7 +470,7 @@ type Unsubscribe @entity(immutable: true) {
   position: Position!
 }
 
-type Transfer @entity(immutable: true) {
+type Transfer @entity(immutable: false) {
   # transaction hash + '-' + log index
   id: ID!
   # token id of position
@@ -489,30 +489,4 @@ type Transfer @entity(immutable: true) {
   origin: String!
   # pointer to position
   position: Position!
-}
-
-type EulerSwapHook @entity(immutable: false) {
-  # Composite key = eulerAccount-asset0-asset1
-  id: ID!
-  # The latest hook address for this key
-  hook: String!
-  # address of the euler account
-  eulerAccount: String!
-  # address of asset0
-  asset0: String!
-  # address of asset1
-  asset1: String!
-}
-
-type ArrakisHook @entity(immutable: false) {
-  # hook address
-  id: ID!
-  # module address that created this hook
-  module: Bytes!
-  # salt used in creation
-  salt: Bytes!
-  # timestamp of creation
-  createdAtTimestamp: BigInt!
-  # block number of creation
-  createdAtBlockNumber: BigInt!
 }
